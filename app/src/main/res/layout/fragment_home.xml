@@ -23,17 +23,17 @@
         tools:layout_editor_absoluteX="0dp" />
 
     <Button
-        android:id="@+id/delete"
+        android:id="@+id/deleteuser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="@string/delete"
-        app:layout_constraintTop_toBottomOf="@+id/view"
+        app:layout_constraintTop_toBottomOf="@+id/viewuser"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="0dp" />
 
     <Button
-        android:id="@+id/view"
+        android:id="@+id/viewuser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -46,9 +46,9 @@
         android:id="@+id/update"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="21dp"
         android:text="@string/update"
-        app:layout_constraintTop_toBottomOf="@+id/delete"
+        app:layout_constraintTop_toBottomOf="@+id/deleteuser"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="0dp" />
 

@@ -6,6 +6,7 @@ import androidx.room.PrimaryKey;
 
 @Entity(tableName = "users")//把table name修改
 public class User {
+
     @PrimaryKey//鑰匙
     private int id;
     @ColumnInfo(name="user_name")//欄位資訊 設定名子為user_name
