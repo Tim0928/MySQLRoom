@@ -15,7 +15,7 @@ import android.widget.Button;
  * A simple {@link Fragment} subclass.
  */
 public class Homefragment extends Fragment implements View.OnClickListener{
-    private Button bnadduser,bnreaduser;
+    private Button bnadduser,bnreaduser,bndeleteuser;
 
     public Homefragment() {
         // Required empty public constructor
@@ -31,6 +31,8 @@ public class Homefragment extends Fragment implements View.OnClickListener{
         bnadduser.setOnClickListener(this);
         bnreaduser=view.findViewById(R.id.viewuser);
         bnreaduser.setOnClickListener(this);
+        bndeleteuser=view.findViewById(R.id.deleteuser);
+        bndeleteuser.setOnClickListener(this);
         return view;
     }
 
@@ -44,6 +46,10 @@ public class Homefragment extends Fragment implements View.OnClickListener{
             case R.id.viewuser:
                 MainActivity.fragmentManager.beginTransaction().replace(
                         R.id.frangment_container,new ReadUserFragment()).addToBackStack(null).commit();//??
+                break;
+            case R.id.deleteuser:
+                MainActivity.fragmentManager.beginTransaction().replace(
+                        R.id.frangment_container,new DeleteUserFragment()).addToBackStack(null).commit();//??
                 break;
 
         }
