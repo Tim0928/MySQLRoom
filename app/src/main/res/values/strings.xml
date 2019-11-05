@@ -12,4 +12,6 @@
     <string name="add_user">Add user</string>
     <string name="user">user</string>
     <string name="userid">userid</string>
+    <string name="id">id</string>
+    <string name="email">email</string>
 </resources>
