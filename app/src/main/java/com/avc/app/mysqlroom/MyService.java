@@ -54,23 +54,35 @@ public class MyService extends Service {
         Log.i("MyService","getRandomNumber"+num);
         return mGenerator.nextInt(100);
     }
-    public static int addUser(User userinfo) {
-        Log.i("MyService","getId: "+userinfo.getId());
-        MainActivity.myAppDatabase.myDao().addUser(userinfo);
+    public static void addUser(Book bookinfo) {
+        Log.i("MyService","getId: "+bookinfo.getId());
+        MainActivity.myAppDatabase.myDao().addbook(bookinfo);
         Log.i("MyService","succeed addUser ");
-        return mGenerator.nextInt(100);
+        //return mGenerator.nextInt(100);
+    }
+    public static void updateUser(Book bookinfo) {
+        Log.i("MyService","getId: "+bookinfo.getId());
+        MainActivity.myAppDatabase.myDao().updatebook(bookinfo);
+        Log.i("MyService","succeed updateUser ");
+        //return mGenerator.nextInt(100);
     }
 
-    public static List<User> readUser() {
+
+    public static int deleteUser(int userid) {
+        Book user=new Book();
+        user.setId(userid);
+        Log.i("MyService","getId: "+user.getId());
+        MainActivity.myAppDatabase.myDao().deletebook(user);
+        Log.i("MyService","succeed deleteUser ");
+        return mGenerator.nextInt(100);
+    }
+    public static List<Book> readBook() {
 
 
-        List<User> users=MainActivity.myAppDatabase.myDao().getuser();
+        List<Book> users=MainActivity.myAppDatabase.myDao().getbook();
         Log.i("MyService","succeed readUser");
         return users;
     }
-
-
-
     public static void ReaduserTolog(){
         // this.Bnsave.setText("123");
         final Handler handler=new Handler();
@@ -79,12 +91,12 @@ public class MyService extends Service {
             public void run() {
                 //List<User>users=MainActivity.myAppDatabase.myDao().getuser();
                 String info="";
-                List<User>users=MyService.readUser();
-                for(User user:users){
+                List<Book>users=MyService.readBook();
+                for(Book user:users){
                     int id=user.getId();
-                    String  name=user.getName();
-                    String  email=user.getEmail();
-                    info =info+"\n\n"+"Id :"+id+"\n Name :"+name+"\n Email :"+email;
+                    String  name=user.getBook_name();
+                    String  email=user.getBook_conext();
+                    info =info+"\n\n"+"Id :"+id+"\n Name :"+name+"\n context :"+email;
                 }
                 Log.i("MyService","succeed ReaduserTolog");
                 Log.i("MyService",info);

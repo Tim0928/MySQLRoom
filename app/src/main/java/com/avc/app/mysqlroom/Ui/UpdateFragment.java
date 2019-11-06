@@ -12,9 +12,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.avc.app.mysqlroom.Book;
 import com.avc.app.mysqlroom.MainActivity;
 import com.avc.app.mysqlroom.R;
-import com.avc.app.mysqlroom.User;
 
 
 /**
@@ -45,11 +45,11 @@ public class UpdateFragment extends Fragment {
                 int id=Integer.parseInt(userid.getText().toString());
                 String name=username.getText().toString();
                 String email=useremail.getText().toString();
-                User user=new User();
-                user.setId(id);
-                user.setName(name);
-                user.setEmail(email);
-                MainActivity.myAppDatabase.myDao().updateUser(user);
+                Book book=new Book();
+                book.setId(id);
+                book.setBook_name(name);
+                book.setBook_conext(email);
+                MainActivity.myAppDatabase.myDao().updatebook(book);
                 Toast.makeText(getActivity(),"update successful",Toast.LENGTH_SHORT).show();
                 userid.setText("");
                 username.setText("");

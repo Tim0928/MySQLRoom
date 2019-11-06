@@ -14,10 +14,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.avc.app.mysqlroom.Book;
 import com.avc.app.mysqlroom.MainActivity;
 import com.avc.app.mysqlroom.MyService;
 import com.avc.app.mysqlroom.R;
-import com.avc.app.mysqlroom.User;
 
 
 /**
@@ -26,6 +26,7 @@ import com.avc.app.mysqlroom.User;
 public class AddUserFragment extends Fragment {
     private EditText userid,username,useremail;
     private Button Bnsave;
+    //private addfactory maddfactory;
    // MyService mService;
     public AddUserFragment() {
         // Required empty public constructor
@@ -58,11 +59,11 @@ public class AddUserFragment extends Fragment {
                 String usernamestr=username.getText().toString();
                 String useremailstr=useremail.getText().toString();
 
-                User user=new User();
+                Book user=new Book();
                 user.setId(useridnum);
-                user.setName(usernamestr);
-                user.setEmail(useremailstr);
-                MainActivity.myAppDatabase.myDao().addUser(user);
+                user.setBook_name(usernamestr);
+                user.setBook_conext(useremailstr);
+             //   MainActivity.myAppDatabase.myDao().addUser(user);
 
                 Log.i("MyService","stopButton");
                 Toast.makeText(getActivity(),"add user successful:",Toast.LENGTH_SHORT).show();
@@ -70,7 +71,7 @@ public class AddUserFragment extends Fragment {
                 username.setText("");
                 useremail.setText("");
 
-
+                Adduser(user );
 
             }
         });
@@ -86,7 +87,8 @@ public class AddUserFragment extends Fragment {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                Bnsave.setText("Random:"+MyService.getRandomNumber());
+                Bnsave.setText("Random:"+MyService.getRandomNumber(10));
+ //               Log.i("MyService","ui getRandomNumber:"+MyService.getRandomNumber(10));
                 handler.postDelayed(this,2000);
 
             }
@@ -95,6 +97,20 @@ public class AddUserFragment extends Fragment {
     }
 
 
+    private void Adduser(final Book userinfo){
+        // this.Bnsave.setText("123");
+        final Handler handler=new Handler();
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                 Bnsave.setText("Random:"+MyService.getRandomNumber(10));
+                MyService.addUser(userinfo);
+                // handler.postDelayed(this,100);
+
+            }
+        });
+
+    }
 
 
 

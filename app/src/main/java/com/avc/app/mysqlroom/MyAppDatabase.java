@@ -7,7 +7,7 @@ import androidx.room.Insert;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-@Database(entities ={User.class},version = 1)//entities means table
+@Database(entities ={Book.class},version = 2)//entities means table
 public abstract class MyAppDatabase extends RoomDatabase {
 //    private static  MyAppDatabase instance;//instance詳細 實體
     public  abstract MyDao myDao();

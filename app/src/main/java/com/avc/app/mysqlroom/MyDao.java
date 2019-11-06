@@ -11,11 +11,11 @@ import androidx.room.Update;
 @Dao
 public interface MyDao {
     @Insert//這個＠代表它會幫我做insert
-    public void addUser(User user);
-    @Query("select * from users")
-    public List<User>getuser();//撰寫getuser
+    public void addbook(Book book);
+    @Query("select * from lib")
+    public List<Book>getbook();//撰寫getuser
     @Delete
-    public void deleteUser(User user);
+    public void deletebook(Book book);
     @Update
-    public void updateUser(User user);
+    public void updatebook(Book book);
 }

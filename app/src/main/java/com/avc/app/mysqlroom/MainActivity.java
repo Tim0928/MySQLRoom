@@ -17,10 +17,10 @@ import com.avc.app.mysqlroom.Ui.Homefragment;
 public class MainActivity extends AppCompatActivity {
     public static FragmentManager fragmentManager;
     public static MyAppDatabase myAppDatabase;
-     MyService mService;
+    public static MyService mService;
 
 
-    //new 20191106
+    //new 20191106z
     boolean mBound = false;
     Intent intent;
 
@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         fragmentManager= getSupportFragmentManager();
-        myAppDatabase=Room.databaseBuilder(getApplicationContext(),MyAppDatabase.class,"userdb").allowMainThreadQueries().build();
+        myAppDatabase=Room.databaseBuilder(getApplicationContext(),MyAppDatabase.class,"bookdb").allowMainThreadQueries().build();
 
         //new 20191106
         intent = new Intent(getApplicationContext(), MyService.class);
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
             MyService.LocalBinder binder = (MyService.LocalBinder) service;
             mService = binder.getService();
             mBound = true;
-            mService.run();
+            mService.runtimehandler();
             Log.i("MyService","onServiceConnected");
         }
 
@@ -67,15 +67,9 @@ public class MainActivity extends AppCompatActivity {
         }
     };
     @Override
-    protected void onStop() {
-        unbindService(mConnection);
-        super.onStop();
-    }
-
-    @Override
     protected void onDestroy() {
         Log.i("MyService","onDestroy");
-
+        unbindService(mConnection);
         super.onDestroy();
 
       //  Toast.makeText(this, "onDestroy", Toast.LENGTH_LONG).show();
