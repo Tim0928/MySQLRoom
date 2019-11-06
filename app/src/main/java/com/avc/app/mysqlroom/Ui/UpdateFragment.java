@@ -1,4 +1,4 @@
-package com.avc.app.mysqlroom;
+package com.avc.app.mysqlroom.Ui;
 
 
 import android.os.Bundle;
@@ -11,6 +11,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.avc.app.mysqlroom.MainActivity;
+import com.avc.app.mysqlroom.R;
+import com.avc.app.mysqlroom.User;
 
 
 /**

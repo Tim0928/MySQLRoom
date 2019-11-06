@@ -4,7 +4,7 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "users")//把table name修改
+@Entity(tableName = "users")//把table name修改  資料庫建立
 public class User {
 
     @PrimaryKey//鑰匙

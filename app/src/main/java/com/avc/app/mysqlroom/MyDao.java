@@ -10,7 +10,7 @@ import androidx.room.Update;
 
 @Dao
 public interface MyDao {
-    @Insert
+    @Insert//這個＠代表它會幫我做insert
     public void addUser(User user);
     @Query("select * from users")
     public List<User>getuser();//撰寫getuser
