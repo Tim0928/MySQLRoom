@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.avc.app.mysqlroom.AddUserFragment;
 import com.avc.app.mysqlroom.MainActivity;
 import com.avc.app.mysqlroom.R;
 
@@ -39,6 +38,15 @@ public class Homefragment extends Fragment implements View.OnClickListener{
         bndeleteuser.setOnClickListener(this);
         btnupdateuser=view.findViewById(R.id.updateuser);
         btnupdateuser.setOnClickListener(this);
+
+
+
+
+
+
+
+
+
         return view;
     }
 

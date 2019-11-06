@@ -1,16 +1,23 @@
-package com.avc.app.mysqlroom;
+package com.avc.app.mysqlroom.Ui;
 
 
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.avc.app.mysqlroom.MainActivity;
+import com.avc.app.mysqlroom.MyService;
+import com.avc.app.mysqlroom.R;
+import com.avc.app.mysqlroom.User;
 
 
 /**
@@ -19,7 +26,7 @@ import android.widget.Toast;
 public class AddUserFragment extends Fragment {
     private EditText userid,username,useremail;
     private Button Bnsave;
-
+   // MyService mService;
     public AddUserFragment() {
         // Required empty public constructor
     }
@@ -35,6 +42,9 @@ public class AddUserFragment extends Fragment {
         username=view.findViewById(R.id.txt_username);
         useremail=view.findViewById(R.id.txt_useremail);
         Bnsave=view.findViewById(R.id.bn_save);
+
+
+
 
         Bnsave.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,16 +63,37 @@ public class AddUserFragment extends Fragment {
                 user.setName(usernamestr);
                 user.setEmail(useremailstr);
                 MainActivity.myAppDatabase.myDao().addUser(user);
-                Toast.makeText(getActivity(),"add user successful",Toast.LENGTH_SHORT).show();
+
+                Log.i("MyService","stopButton");
+                Toast.makeText(getActivity(),"add user successful:",Toast.LENGTH_SHORT).show();
                 userid.setText("");
                 username.setText("");
                 useremail.setText("");
 
 
+
             }
         });
+
+
+        displayDistance();
+
         return view;
     }
+    private void displayDistance(){
+     // this.Bnsave.setText("123");
+        final Handler handler=new Handler();
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                Bnsave.setText("Random:"+MyService.getRandomNumber());
+                handler.postDelayed(this,2000);
+
+            }
+        });
+
+    }
+
 
 
 
