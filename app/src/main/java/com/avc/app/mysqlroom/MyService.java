@@ -8,6 +8,7 @@ import android.os.IBinder;
 import android.util.Log;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 public class MyService extends Service {
@@ -38,7 +39,7 @@ public class MyService extends Service {
         }
     }
 
-    public void run() {
+    public void runtimehandler() {
         handler.post(showtime);
 
     }
@@ -49,10 +50,50 @@ public class MyService extends Service {
     }
 
     /** method for clients */
-    public static int getRandomNumber() {
-        Log.i("MyService","getRandomNumber");
+    public static int getRandomNumber(int num) {
+        Log.i("MyService","getRandomNumber"+num);
         return mGenerator.nextInt(100);
     }
+    public static int addUser(User userinfo) {
+        Log.i("MyService","getId: "+userinfo.getId());
+        MainActivity.myAppDatabase.myDao().addUser(userinfo);
+        Log.i("MyService","succeed addUser ");
+        return mGenerator.nextInt(100);
+    }
+
+    public static List<User> readUser() {
+
+
+        List<User> users=MainActivity.myAppDatabase.myDao().getuser();
+        Log.i("MyService","succeed readUser");
+        return users;
+    }
+
+
+
+    public static void ReaduserTolog(){
+        // this.Bnsave.setText("123");
+        final Handler handler=new Handler();
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                //List<User>users=MainActivity.myAppDatabase.myDao().getuser();
+                String info="";
+                List<User>users=MyService.readUser();
+                for(User user:users){
+                    int id=user.getId();
+                    String  name=user.getName();
+                    String  email=user.getEmail();
+                    info =info+"\n\n"+"Id :"+id+"\n Name :"+name+"\n Email :"+email;
+                }
+                Log.i("MyService","succeed ReaduserTolog");
+                Log.i("MyService",info);
+            }
+        });
+
+    }
+
+
     @Override
     public  boolean onUnbind(Intent intent){
         Log.i("MyService","onUnbind");
